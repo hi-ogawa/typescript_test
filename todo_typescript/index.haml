@@ -1,0 +1,62 @@
+!!! 5
+%html
+  %head
+    %meta{charset: "UTF-8"}
+    %title Test Backbone
+
+    -# backbone dependencies
+    %script{src: "bower_components/jquery/dist/jquery.js"}
+    %script{src: "bower_components/underscore/underscore.js"}
+    %script{src: "bower_components/backbone/backbone.js"}
+    %script{src: "bower_components/backbone.localstorage/backbone.localstorage.js"}
+
+    -# bootstrap styling
+    %link{rel: 'stylesheet', href: 'bower_components/bootstrap/dist/css/bootstrap.css'}'
+    %script{src: "bower_components/bootstrap/dist/js/bootstrap.js"}
+
+    -# app specific js files are at bottom
+
+  %body
+
+    .container
+      .row
+        .col-xs-4
+
+          -# main view
+          #todoapp
+       
+            #header
+              %span.h3 Todos
+              .sets.btn-group.btn-group-sm.pull-right
+                %a.set-all.btn{href: "#filter/all"} all
+                %a.set-completed.btn{href: "#filter/completed"} completed
+                %a.set-pending.btn{href: "#filter/pending"} pending
+                %a.set-sort.btn sort by title
+
+            %br
+            %input#new-todo.form-control{placeholder: "What needs to be done?"}
+            
+            %br  
+            %ul#todo-list.list-group
+              %li.list-group-item hoge
+
+       
+    -# template for TodoView
+    %script#item-template{type: "text/template"}
+      .form-inline
+        %a.done.btn.btn-default.btn-sm
+          <% if(completed) { %>
+          .glyphicon.glyphicon-ok
+          <% } else { %>
+          .glyphicon.glyphicon-unchecked
+          <% } %>
+        %input.edit.form-control{value: "<%- title %>"}
+        %label.title <%- title %>
+        %a.destroy.btn.btn-default.btn-sm.pull-right
+          .glyphicon.glyphicon-trash
+
+
+
+    -# app specific js files
+    %script{src: "js/app.js"}
+
